@@ -131,6 +131,82 @@ Supports **Solana** (~400ms, ~$0.0001 gas) and **Base** (~2s, ~$0.01 gas).
 | `SECURITY.md` | Security features and production checklist | Read it |
 | `Dockerfile` | Multi-stage build, non-root, health check | No |
 
+## Browser Identity Bundles (v1.1.0)
+
+The [Proxies.sx Browser API](https://browser.proxies.sx) now supports **Identity Bundles** — save and restore a complete browser identity across sessions.
+
+### What Are Identity Bundles?
+
+An Identity Bundle captures everything that makes a browser session unique:
+
+- **Cookies** — login sessions, consent states, tracking cookies
+- **localStorage / sessionStorage** — app preferences, cached tokens
+- **Browser fingerprint** — canvas, WebGL, fonts, screen resolution
+- **Proxy device binding** — same mobile IP device across sessions
+
+This means an AI agent can log into a site on Day 1, save the identity, then return on Day 30 with the exact same browser — same cookies, same fingerprint, same device IP. The site sees a returning user, not a new visitor.
+
+### Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/v1/sessions` | Create session (accepts `profile_id` to restore identity) |
+| `POST` | `/v1/sessions/:id/profile` | Save current session as an Identity Bundle |
+| `POST` | `/v1/sessions/:id/profile/load` | Load a saved Identity Bundle into active session |
+| `GET` | `/v1/profiles` | List all saved Identity Bundles |
+| `DELETE` | `/v1/profiles/:id` | Delete an Identity Bundle |
+
+### Workflow Example
+
+**Day 1 — Create identity and log in:**
+```bash
+# 1. Create a new browser session
+POST /v1/sessions
+Payment-Signature: <tx_hash>
+Body: { "country": "US" }
+# → { "sessionId": "sess_abc", ... }
+
+# 2. Navigate, log in, do work via CDP/commands
+POST /v1/sessions/sess_abc/command
+Body: { "action": "navigate", "url": "https://example.com/login" }
+
+# 3. Save the identity bundle (cookies, storage, fingerprint, device)
+POST /v1/sessions/sess_abc/profile
+# → { "profileId": "prof_xyz", "size": 48210, ... }
+```
+
+**Day 30 — Restore identity and continue:**
+```bash
+# 1. Create session WITH the saved profile — identity fully restored
+POST /v1/sessions
+Payment-Signature: <tx_hash>
+Body: { "country": "US", "profile_id": "prof_xyz" }
+# → Session starts with same cookies, fingerprint, and proxy device
+
+# 2. Navigate — site sees a returning user
+POST /v1/sessions/sess_abc/command
+Body: { "action": "navigate", "url": "https://example.com/dashboard" }
+# → Already logged in, no re-authentication needed
+```
+
+### Anti-Lock Rules
+
+Identity Bundles are designed to avoid account locks and detection. Follow these rules:
+
+| Rule | Why |
+|------|-----|
+| **One account = one Identity Bundle** | Never reuse a bundle across different site accounts |
+| **Consistent proxy device** | The bundle binds to a specific proxy device for IP consistency |
+| **Never geo-teleport** | If your bundle was created with a US proxy, always restore with a US proxy |
+| **Don't share bundles** | Each bundle should be used by a single agent/workflow |
+
+### Use Cases for Service Builders
+
+- **Account management services** — maintain persistent logins across sessions
+- **Social media monitors** — check feeds without re-authenticating
+- **E-commerce scrapers** — preserve cart state and price history cookies
+- **Form automation** — multi-step flows that span multiple sessions
+
 ## Security
 
 Built in by default:
@@ -198,9 +274,9 @@ Your service needs customers. The [Proxies.sx Marketplace](https://agents.proxie
 | # | Service | Reward | Required | Claim | Status |
 |---|---------|--------|----------|-------|--------|
 | 1 | ~~YouTube Transcript Scraper~~ | $200 in $SX token | proxy + x402 | — | **DONE** |
-| 2 | **Google SERP + AI Search Scraper** | $200 in $SX token | proxy + browser + x402 | [#1](https://github.com/bolivian-peru/marketplace-service-template/issues/1) | OPEN |
-| 3 | **Gmail Account Creator** | $200 in $SX token | proxy + browser + x402 | [#2](https://github.com/bolivian-peru/marketplace-service-template/issues/2) | OPEN |
-| 4 | **Instagram Account Creator** | $200 in $SX token | proxy + browser + x402 | [#3](https://github.com/bolivian-peru/marketplace-service-template/issues/3) | OPEN |
+| 2 | **Google SERP + AI Search Scraper** | $200 in $SX token | proxy + browser (Identity Bundles) + x402 | [#1](https://github.com/bolivian-peru/marketplace-service-template/issues/1) | OPEN |
+| 3 | **Gmail Account Creator** | $200 in $SX token | proxy + browser (Identity Bundles) + x402 | [#2](https://github.com/bolivian-peru/marketplace-service-template/issues/2) | OPEN |
+| 4 | **Instagram Account Creator** | $200 in $SX token | proxy + browser (Identity Bundles) + x402 | [#3](https://github.com/bolivian-peru/marketplace-service-template/issues/3) | OPEN |
 
 **Rules:**
 1. Must use Proxies.sx mobile proxies
