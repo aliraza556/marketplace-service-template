@@ -47,5 +47,7 @@
   "x402": {
     "discoveryUrl": "https://bounty16-job-market-intelligence.onrender.com/api/run",
     "wellKnown": "https://bounty16-job-market-intelligence.onrender.com"
-  }
+  },
+  "lastVerified": "2026-02-15T00:00:00Z",
+  "healthEndpoint": "https://bounty16-job-market-intelligence.onrender.com/health"
 }
