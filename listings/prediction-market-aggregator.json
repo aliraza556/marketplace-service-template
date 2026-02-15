@@ -47,5 +47,7 @@
   "x402": {
     "discoveryUrl": "https://marketplace-service-template.onrender.com/api/run",
     "wellKnown": "https://marketplace-service-template.onrender.com"
-  }
+  },
+  "lastVerified": "2026-02-15T00:00:00Z",
+  "healthEndpoint": "https://marketplace-service-template.onrender.com/health"
 }
