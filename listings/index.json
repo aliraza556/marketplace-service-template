@@ -16,7 +16,15 @@
         "currency": "USDC"
       },
       "category": "proxy",
-      "tags": ["mobile", "4g", "5g", "rotating", "residential", "scraping", "socks5"],
+      "tags": [
+        "mobile",
+        "4g",
+        "5g",
+        "rotating",
+        "residential",
+        "scraping",
+        "socks5"
+      ],
       "owner": {
         "name": "Proxies.sx",
         "twitter": "sxproxies",
@@ -39,7 +47,15 @@
         "currency": "USDC"
       },
       "category": "browser",
-      "tags": ["antidetect", "chrome", "nodriver", "fingerprint", "automation", "stealth", "mobile-proxy-included"],
+      "tags": [
+        "antidetect",
+        "chrome",
+        "nodriver",
+        "fingerprint",
+        "automation",
+        "stealth",
+        "mobile-proxy-included"
+      ],
       "owner": {
         "name": "Proxies.sx",
         "twitter": "sxproxies",
@@ -62,7 +78,13 @@
         "currency": "USDC"
       },
       "category": "scraper",
-      "tags": ["google-maps", "lead-generation", "business-data", "b2b", "scraper"],
+      "tags": [
+        "google-maps",
+        "lead-generation",
+        "business-data",
+        "b2b",
+        "scraper"
+      ],
       "owner": {
         "name": "aliraza556",
         "github": "aliraza556"
@@ -84,7 +106,13 @@
         "currency": "USDC"
       },
       "category": "scraper",
-      "tags": ["serp", "seo", "google-search", "mobile-serp", "rank-tracking"],
+      "tags": [
+        "serp",
+        "seo",
+        "google-search",
+        "mobile-serp",
+        "rank-tracking"
+      ],
       "owner": {
         "name": "aliraza556",
         "github": "aliraza556"
@@ -98,7 +126,7 @@
       "name": "Job Market Intelligence",
       "description": "Real-time job market data from major job boards. Salary ranges, skills demand, location analysis. $0.005/query via x402.",
       "endpoint": "https://bounty16-job-market-intelligence.onrender.com",
-      "docsUrl": "https://bounty16-job-market-intelligence.onrender.com/docs",
+      "docsUrl": "https://agents.proxies.sx/marketplace/skill.md",
       "pricing": {
         "model": "per-request",
         "amount": "0.005",
@@ -106,7 +134,12 @@
         "currency": "USDC"
       },
       "category": "data",
-      "tags": ["job-market", "salary-data", "hiring-trends", "skills-demand"],
+      "tags": [
+        "job-market",
+        "salary-data",
+        "hiring-trends",
+        "skills-demand"
+      ],
       "owner": {
         "name": "Lutra23",
         "github": "Lutra23"
@@ -120,7 +153,7 @@
       "name": "Prediction Market Aggregator",
       "description": "Aggregated prediction market data from Polymarket, Kalshi, and more. Real-time odds, volume, and market signals. $0.05/query via x402.",
       "endpoint": "https://marketplace-service-template.onrender.com",
-      "docsUrl": "https://marketplace-service-template.onrender.com/docs",
+      "docsUrl": "https://agents.proxies.sx/marketplace/skill.md",
       "pricing": {
         "model": "per-request",
         "amount": "0.05",
@@ -128,7 +161,12 @@
         "currency": "USDC"
       },
       "category": "data",
-      "tags": ["prediction-market", "polymarket", "kalshi", "forecasting"],
+      "tags": [
+        "prediction-market",
+        "polymarket",
+        "kalshi",
+        "forecasting"
+      ],
       "owner": {
         "name": "rakesh0x",
         "github": "rakesh0x"
@@ -156,7 +194,14 @@
       "gasCost": "~$0.01"
     }
   },
-  "categories": ["proxy", "browser", "scraper", "data", "automation", "other"],
+  "categories": [
+    "proxy",
+    "browser",
+    "scraper",
+    "data",
+    "automation",
+    "other"
+  ],
   "links": {
     "marketplace": "https://agents.proxies.sx/marketplace/",
     "submit": "https://github.com/bolivian-peru/marketplace-service-template/pulls",
