@@ -16,17 +16,17 @@ Real scraped data from the live deployment via Proxies.sx mobile proxies.
 # Search Reddit
 curl -H "X-Payment-Signature: <tx_hash>" \
      -H "X-Payment-Network: solana" \
-     "https://marketplace-service-template-production.up.railway.app/api/reddit/search?query=artificial+intelligence&subreddit=technology&limit=10"
+     "https://marketplace-service-template-production-16c6.up.railway.app/api/reddit/search?query=artificial+intelligence&subreddit=technology&limit=10"
 
 # Subreddit top posts
 curl -H "X-Payment-Signature: <tx_hash>" \
      -H "X-Payment-Network: solana" \
-     "https://marketplace-service-template-production.up.railway.app/api/reddit/subreddit/cryptocurrency/top?time=week&limit=10"
+     "https://marketplace-service-template-production-16c6.up.railway.app/api/reddit/subreddit/cryptocurrency/top?time=week&limit=10"
 
 # Thread with comments
 curl -H "X-Payment-Signature: <tx_hash>" \
      -H "X-Payment-Network: solana" \
-     "https://marketplace-service-template-production.up.railway.app/api/reddit/thread/<thread_id>/comments?limit=50"
+     "https://marketplace-service-template-production-16c6.up.railway.app/api/reddit/thread/<thread_id>/comments?limit=50"
 ```
 
 ## Notes
